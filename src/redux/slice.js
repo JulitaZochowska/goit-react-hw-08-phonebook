@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { addContact, deleteContact, fetchContacts } from './actions';
+import { addContact, deleteContact, fetchContacts, register } from './actions';
 
 const handlePending = state => {
   state.isLoading = true;
@@ -9,6 +9,24 @@ const handleRejected = (state, action) => {
   state.error = action.payload;
 };
 
+const initialState = {
+  user: { name: null, email: null },
+  token: null,
+  isLoggedIn: false,
+  isRefreshing: false,
+};
+
+const authSlice = createSlice({
+  name: 'auth',
+  initialState,
+  extraReducers: {
+    [register.fulfilled](state, action) {
+      state.user = action.payload.user;
+      state.token = action.payload.token;
+      state.isLoggedIn = true;
+    },
+  },
+});
 const contactsSlice = createSlice({
   name: 'contacts',
   initialState: {
@@ -46,3 +64,4 @@ const contactsSlice = createSlice({
 });
 
 export const contactsReducer = contactsSlice.reducer;
+export const authReducer = authSlice.reducer;
