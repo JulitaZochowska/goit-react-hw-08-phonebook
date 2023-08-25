@@ -1,5 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { addContact, deleteContact, fetchContacts, register } from './actions';
+import {
+  addContact,
+  deleteContact,
+  fetchContacts,
+  logIn,
+  logOut,
+  refreshUser,
+  register,
+} from './actions';
 
 const handlePending = state => {
   state.isLoading = true;
@@ -24,6 +32,27 @@ const authSlice = createSlice({
       state.user = action.payload.user;
       state.token = action.payload.token;
       state.isLoggedIn = true;
+    },
+
+    [logIn.fulfilled](state, action) {
+      state.user = action.payload.user;
+      state.token = action.payload.token;
+      state.isLoggedIn = true;
+    },
+    //persist trzyma tylko token, bo tak mu zadeklarowaliśmy
+    //refresh po to, by załadował nam name, ebyśmy nie musieli sie od nowa logowac przy odswiezeniu
+    [refreshUser.pending](state, action) {
+      state.isRefreshing = true;
+    },
+    [refreshUser.fulfilled](state, action) {
+      state.user = action.payload;
+      state.isLoggedIn = true;
+      state.isRefreshing = false;
+    },
+    [logOut.fulfilled](state, action) {
+      state.user = { name: null, email: null };
+      state.token = null;
+      state.isLoggedIn = false;
     },
   },
 });

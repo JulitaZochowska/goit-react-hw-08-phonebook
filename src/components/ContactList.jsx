@@ -12,7 +12,7 @@ export const ContactList = () => {
     <ul>
       {contacts.map(contact => (
         <li className={css.contact} key={contact.id}>
-          {contact.name}: {contact.phone}&nbsp;
+          {contact.name}: {contact.number}&nbsp;
           <button
             className={css.button}
             onClick={() => {
