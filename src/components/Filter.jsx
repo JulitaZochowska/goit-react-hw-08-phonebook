@@ -1,7 +1,8 @@
 import React from 'react';
-import css from './Filter.module.css';
 import { useDispatch } from 'react-redux';
 import { setFilter } from 'redux/actions';
+import { InputAdornment, TextField } from '@mui/material';
+import SearchIcon from '@mui/icons-material/Search';
 
 export const Filter = () => {
   const dispatch = useDispatch();
@@ -9,19 +10,20 @@ export const Filter = () => {
   const setFilterValue = event => dispatch(setFilter(event.target.value));
 
   return (
-    <div>
-      <label>Find contacts by name</label>
-      <br />
-      <input
-        className={css.input}
-        type="text"
-        name="filter"
-        onChange={setFilterValue}
-        pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-        title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-        required
-      />
-    </div>
+    <TextField
+      id="filter"
+      name="filter"
+      label="Find contacts by name"
+      variant="standard"
+      onChange={setFilterValue}
+      InputProps={{
+        startAdornment: (
+          <InputAdornment position="start">
+            <SearchIcon />
+          </InputAdornment>
+        ),
+      }}
+    />
   );
 };
 

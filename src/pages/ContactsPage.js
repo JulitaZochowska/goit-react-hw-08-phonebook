@@ -1,3 +1,4 @@
+import { Container, Typography } from '@mui/material';
 import ContactForm from 'components/ContactForm';
 import ContactList from 'components/ContactList';
 import Filter from 'components/Filter';
@@ -13,13 +14,41 @@ export const ContactsPage = () => {
   }, [dispatch]);
 
   return (
-    <div>
-      <h1>Phonebook</h1>
+    <Container
+      disableGutters
+      maxWidth="sm"
+      component="main"
+      sx={{
+        pt: 8,
+        pb: 6,
+        flexGrow: 1,
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '30px',
+      }}
+    >
+      <Typography
+        component="h1"
+        variant="h2"
+        align="center"
+        color="text.primary"
+        gutterBottom
+      >
+        Phonebook
+      </Typography>
       <ContactForm />
 
-      <h2>Contacts</h2>
+      <Typography
+        component="h2"
+        variant="h4"
+        align="center"
+        color="text.primary"
+        gutterBottom
+      >
+        Contacts
+      </Typography>
       <Filter />
       <ContactList />
-    </div>
+    </Container>
   );
 };
