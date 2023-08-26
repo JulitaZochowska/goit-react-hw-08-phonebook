@@ -1,63 +1,16 @@
 import { useDispatch } from 'react-redux';
 import { register } from 'redux/actions';
-
-//TODO: usunac te funkcje do losowego generowania danych
-// function generateRandomUsername() {
-//   const adjectives = [
-//     'happy',
-//     'sunny',
-//     'daring',
-//     'clever',
-//     'swift',
-//     'genuine',
-//     'brave',
-//     'shiny',
-//   ];
-//   const nouns = [
-//     'panda',
-//     'tiger',
-//     'eagle',
-//     'dolphin',
-//     'unicorn',
-//     'phoenix',
-//     'dragon',
-//     'lion',
-//   ];
-
-//   const randomAdjective =
-//     adjectives[Math.floor(Math.random() * adjectives.length)];
-//   const randomNoun = nouns[Math.floor(Math.random() * nouns.length)];
-
-//   return `${randomAdjective}_${randomNoun}`;
-// }
-
-// function generateRandomEmail() {
-//   const providers = [
-//     'gmail.com',
-//     'yahoo.com',
-//     'outlook.com',
-//     'example.com',
-//     'mail.com',
-//   ];
-//   const username = generateRandomUsername();
-//   const randomProvider =
-//     providers[Math.floor(Math.random() * providers.length)];
-
-//   return `${username}@${randomProvider}`;
-// }
-
-// function generateRandomPassword(length = 12) {
-//   const charset =
-//     'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()-_=+';
-//   let password = '';
-
-//   for (let i = 0; i < length; i++) {
-//     const randomIndex = Math.floor(Math.random() * charset.length);
-//     password += charset.charAt(randomIndex);
-//   }
-
-//   return password;
-// }
+import * as React from 'react';
+import Avatar from '@mui/material/Avatar';
+import Button from '@mui/material/Button';
+import CssBaseline from '@mui/material/CssBaseline';
+import TextField from '@mui/material/TextField';
+import Link from '@mui/material/Link';
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
 
 export const RegisterForm = () => {
   const dispatch = useDispatch();
@@ -78,17 +31,86 @@ export const RegisterForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} autoComplete="off">
-      <label>
-        Username <input type="text" name="name" />
-      </label>
-      <label>
-        Email <input type="email" name="email" />
-      </label>
-      <label>
-        Password <input type="password" name="password" />
-      </label>
-      <button type="submit">Register</button>
-    </form>
+    // <form onSubmit={handleSubmit} autoComplete="off">
+    //   <label>
+    //     Username <input type="text" name="name" />
+    //   </label>
+    //   <label>
+    //     Email <input type="email" name="email" />
+    //   </label>
+    //   <label>
+    //     Password <input type="password" name="password" />
+    //   </label>
+    //   <button type="submit">Register</button>
+    // </form>
+    <Container component="main" maxWidth="xs">
+      <CssBaseline />
+      <Box
+        sx={{
+          marginTop: 8,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}
+      >
+        <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+          <LockOutlinedIcon />
+        </Avatar>
+        <Typography component="h1" variant="h5">
+          Sign up
+        </Typography>
+        <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+          <Grid container spacing={2}>
+            <Grid item xs={12}>
+              <TextField
+                autoComplete="given-name"
+                name="name"
+                required
+                fullWidth
+                id="name"
+                label="Name"
+                autoFocus
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                required
+                fullWidth
+                id="email"
+                label="Email Address"
+                name="email"
+                autoComplete="email"
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                required
+                fullWidth
+                name="password"
+                label="Password"
+                type="password"
+                id="password"
+                autoComplete="new-password"
+              />
+            </Grid>
+          </Grid>
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            sx={{ mt: 3, mb: 2 }}
+          >
+            Sign Up
+          </Button>
+          <Grid container justifyContent="flex-end">
+            <Grid item>
+              <Link href="login" variant="body2">
+                Already have an account? Sign in
+              </Link>
+            </Grid>
+          </Grid>
+        </Box>
+      </Box>
+    </Container>
   );
 };

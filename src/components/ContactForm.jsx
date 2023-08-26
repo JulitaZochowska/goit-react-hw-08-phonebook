@@ -4,6 +4,8 @@ import css from './ContactForm.module.css';
 import { useDispatch } from 'react-redux';
 import { addContact } from 'redux/actions';
 
+import Button from '@mui/material/Button';
+
 const INITIAL_STATE = {
   name: '',
   number: '',
@@ -61,9 +63,9 @@ export const ContactForm = () => {
         title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
         required
       />
-      <button className={css.button} type="submit">
+      <Button variant="contained" className={css.button} type="submit">
         Add contact
-      </button>
+      </Button>
     </form>
   );
 };
