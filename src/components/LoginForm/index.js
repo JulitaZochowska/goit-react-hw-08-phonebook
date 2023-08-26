@@ -29,13 +29,6 @@ export const LoginForm = () => {
     form.reset();
   };
 
-  //TODO: usunąć na koniec
-  const testLoginData = {
-    name: 'julita-test-user-25-08-23',
-    email: 'julita-test-user-25-08-23@op.pl',
-    password: 'julita-test-user-25-08-23',
-  };
-
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -63,7 +56,6 @@ export const LoginForm = () => {
             name="email"
             autoComplete="email"
             autoFocus
-            value={testLoginData.email}
           />
           <TextField
             margin="normal"
@@ -74,7 +66,6 @@ export const LoginForm = () => {
             type="password"
             id="password"
             autoComplete="current-password"
-            value={testLoginData.password}
           />
           <Button
             type="submit"
